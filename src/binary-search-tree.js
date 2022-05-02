@@ -33,7 +33,7 @@ class BinarySearchTree {
 
     function finder(node, data) {
       if (!node) return false;
-      if (node.data == data) return true;
+      if (node.data === data) return true;
       if (data < node.data) {
         return finder(node.left, data);
       } else {
@@ -57,7 +57,9 @@ class BinarySearchTree {
   }
 
   remove(data) {
-    this.origin = removeNode(this.origin, data);
+    if (this.has(data) && this.find(data).data === data ) {
+      this.origin = removeNode(this.origin, data);
+    } 
 
     function removeNode(node, data) {
       if (!node) return null;
