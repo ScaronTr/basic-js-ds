@@ -21,9 +21,9 @@ class BinarySearchTree {
 
     function addNode(node, data) {
       if (!node) return new Node(data);
-      if (node.data == data) return node;
+      if (data == node.data) return node;
       if (data < node.data) node.left = addNode(node.left, data)
-      else node.right = addNode(node.right, data);
+      else if (data > node.data) node.right = addNode(node.right, data);
       return node;
     }
   }
@@ -57,9 +57,7 @@ class BinarySearchTree {
   }
 
   remove(data) {
-    if (this.has(data) && this.find(data).data === data ) {
       this.origin = removeNode(this.origin, data);
-    } 
 
     function removeNode(node, data) {
       if (!node) return null;
@@ -76,8 +74,9 @@ class BinarySearchTree {
 
           while (findNode.right) {
             findNode = findNode.right;
-            maxValueLeftNodes = findNode.data;
+
           }
+          maxValueLeftNodes = findNode.data;
           node = removeNode(node, maxValueLeftNodes);
           node.data = maxValueLeftNodes;
         }
